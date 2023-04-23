@@ -35,15 +35,15 @@ const bhitecTechToUserConf = (useremail, object, nom) => {
     };
 }
 
-const sendMail = () => {
-    transporterConf().sendMail(optionConf('daaratechconsulting@gmail.com', 'aliounebadaradiouf7@gmail.com'), function (error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
-}
+// const sendMail = () => {
+//     transporterConf().sendMail(optionConf('daaratechconsulting@gmail.com', 'aliounebadaradiouf7@gmail.com'), function (error, info) {
+//         if (error) {
+//             console.log(error);
+//         } else {
+//             console.log('Email sent: ' + info.response);
+//         }
+//     });
+// }
 
 
 // module.exports = { sendMail };
