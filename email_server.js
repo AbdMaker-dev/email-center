@@ -49,25 +49,30 @@ const sendMail = () => {
 // module.exports = { sendMail };
 
 app.post(`/send-email`, (req, res) => {
-    const { first_name, last_name, email, message, objectMessage } = req.body;
-    if (!(email && message)) {
-        res.status(400).send({ message: "Missing infos" });
+    try {
+        const { fullName, email, message, object } = req.body;
+        if (!(email && message)) {
+            return res.status(400).send({ message: "Missing infos" });
+        }
+        transporterConf().sendMail(userToBhitechConf(email, object, `Nom : ${fullName}\nObjet: ${object}\nMessage : ${message}`), function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+
+        transporterConf().sendMail(bhitecTechToUserConf(email, object, fullName), function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+        return res.status(200).send({ message: "Message sent successfully." });
+    } catch (error) {
+        console.log(error);
     }
-    transporterConf().sendMail(userToBhitechConf(email, objectMessage, `Prenom : ${first_name}\nNom : ${last_name}\nObjet: ${objectMessage}\nMessage : ${message}`), function (error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
-    transporterConf().sendMail(bhitecTechToUserConf(email, objectMessage,last_name), function (error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
-    res.status(200).send({ message: "Message sent successfully." });
 });
 
 app.listen(PORT || 3001, () => {
