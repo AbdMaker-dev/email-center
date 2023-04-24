@@ -10,9 +10,9 @@ const transporterConf = () => {
     return nodemailer.createTransport(smtpTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
-        auth: {
-            user: 'bld.hitech@gmail.com',
-            pass: 'jlhvaxscwbfskefb'
+        auth: { // bld.hitech@gmail.com
+            user: 'aliounebadaradiouf7@gmail.com',
+            pass: 'mlseklypikcnslme'
         }
     }));
 }
@@ -31,7 +31,7 @@ const bhitecTechToUserConf = (useremail, object, nom) => {
         from: 'bld.hitech@gmail.com',
         to: useremail,
         subject: object,
-        text: `Bonjour/Bonsoir Mr/Mm ${nom} nous vous remercions de nous avoir contacté.\nVotre demande a bien été prise en compte, nous reviendrons vers vous dans les plus brefs délais.`
+        text: `Bonjour/Bonsoir Mr/Mm ${nom} nous vous remercions d'avoir contacté B-hitech.\nVotre demande est en cours de traitement, nous reviendrons vers vous dans les plus brefs délais.`
     };
 }
 
